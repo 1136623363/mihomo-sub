@@ -11,10 +11,12 @@ RUN wget -O /tmp/subconverter_linux64.tar.gz https://github.com/tindy2013/subcon
     tar -xzf /tmp/subconverter_linux64.tar.gz -C / && \
     rm -rf /tmp/subconverter_linux64.tar.gz
 
-RUN echo 'mixed-port: 7890' >> /root/.config/mihomo/config.yaml && \
-    echo 'external-ui: /root/.config/mihomo/ui' >> /root/.config/mihomo/config.yaml && \
-    echo 'allow-lan: true' >> /root/.config/mihomo/config.yaml && \
-    echo 'external-controller: :9090' >> /root/.config/mihomo/config.yaml
+RUN cat > /root/.config/mihomo/config.yaml <<EOF
+mixed-port: 7890
+external-ui: /root/.config/mihomo/ui
+allow-lan: true
+external-controller: :9090
+EOF
 
 EXPOSE 7890 9090
 
